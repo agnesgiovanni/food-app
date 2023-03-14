@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { View, Text } from 'react-native'
 import SearchBar from '../components/SearchBar'
-import yelp from './api/yelp'
+import yelp from '../api/yelp'
 
 const SearchScreen = () => {
   const [term, setTerm] = useState('');
@@ -14,13 +14,14 @@ const SearchScreen = () => {
         term,
         location: 'san jose'
       }
-    });
+    }).then(res => res.data)
     // const searchApi = async () => {
     //   let response = await axios.get("https://api.yelp.com/v3/businesses/search");
     //   let { data } = res.data;
     //   setResults(data)
     // }
-    setResults(response.data.businesses)
+    console.log(response)
+    setResults(response.businesses)
   }
 
   return (
